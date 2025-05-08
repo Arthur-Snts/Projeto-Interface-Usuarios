@@ -1,4 +1,5 @@
 import Escopo from "./componentes/Escopo"
+import EscopoReduz from "./componentes/EscopoReduz"
 import './App.css'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
       <Escopo />
+      <EscopoReduz />
     </>
   )
 }
