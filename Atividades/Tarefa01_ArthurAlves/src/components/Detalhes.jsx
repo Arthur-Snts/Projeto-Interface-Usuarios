@@ -5,7 +5,8 @@ export default function Detalhes(props){
         <>
             <figure>
                 <h3>Detalhes do Personagem</h3>
-                <img src={props.screen} alt="Imagem abstrata de corrente" />
+                <p>{props.nome}</p>
+                <img src={props.screen} style={{width: "300px"}} />
                 <figcaption>{props.legenda}</figcaption>
             </figure>
         </>
