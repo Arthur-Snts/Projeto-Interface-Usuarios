@@ -1,0 +1,61 @@
+/* Estilo geral do container */
+.dropdown-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  font-family: sans-serif;
+}
+
+/* Estilo da lista principal (títulos) */
+.dropdown-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+}
+
+/* Cada título */
+.dropdown-container ul > li {
+  position: relative;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: background 0.3s;
+}
+
+/* Hover no título */
+.dropdown-container ul > li:hover {
+  background-color: #e0e0e0;
+}
+
+/* Submenu (links) */
+.dropdown-container ul > li > ul {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 180px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  z-index: 1000;
+}
+
+/* Mostrar submenu ao passar o mouse */
+.dropdown-container ul > li:hover > ul {
+  display: block;
+}
+
+/* Estilo dos links */
+.dropdown-container ul > li > ul > li {
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s;
+}
+
+/* Hover nos links */
+.dropdown-container ul > li > ul > li:hover {
+  background-color: #f5f5f5;
+}
