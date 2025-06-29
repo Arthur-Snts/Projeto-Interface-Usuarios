@@ -1,11 +1,13 @@
-import Atividade from './components/Atividade'
+
 import './App.css'
+import ListaDeTarefas from './components/ListaDeTarefas'
 
 function App() {
+  
 
   return (
     <>
-      <Atividade></Atividade>
+    <ListaDeTarefas/>
     </>
   )
 }
