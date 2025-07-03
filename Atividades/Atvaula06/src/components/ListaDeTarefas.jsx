@@ -6,23 +6,30 @@ export default function ListaDeTarefas(){
     const [tarefa, setTarefa] = useState({
         titulo: "",
         status: "Pendente",
-        prioridade: "Alta"
+        prioridade: "Alta",
+        id :  Math.floor(Math.random()*1000000000)
     })
 
     const [lista, setLista] = useState([])
+
+    const [mostrarInput, setMostrarinput] = useState(false)
+
+    const [titulo, setTitulo] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const novaTarefa = {
             titulo: tarefa.titulo,
             status: "Pendente",
-            prioridade: tarefa.prioridade
+            prioridade: tarefa.prioridade,
+            id :  Math.floor(Math.random()*1000000000)
         }
         setLista([...lista, novaTarefa])
         setTarefa({
             titulo: "",
             status: "Pendente",
-            prioridade: "Alta"
+            prioridade: "Alta",
+            id :  Math.floor(Math.random()*1000000000)
         })
     }
 
@@ -40,6 +47,16 @@ export default function ListaDeTarefas(){
         )
     }
 
+    const handleUpdate = (e, titulo_passado, titulo) => {
+        e.preventDefault();
+        setLista(prevLista =>
+            prevLista.map(i =>
+                i.titulo === titulo_passado ? { ...i, titulo: titulo } : i
+            )
+        )
+        setMostrarinput(false)
+    }
+
     const ordenarPorTitulo = () => {
         const listaOrdenada = [...lista].sort((a, b) =>
             a.titulo.localeCompare(b.titulo)
@@ -53,6 +70,11 @@ export default function ListaDeTarefas(){
             prioridadeValor[b.prioridade] - prioridadeValor[a.prioridade]
         )
         setLista(listaOrdenada)
+    }
+
+    function handleToggle(titulo){
+        setTitulo(titulo)
+        setMostrarinput(true)
     }
 
     return(
@@ -82,14 +104,29 @@ export default function ListaDeTarefas(){
             </div>
 
             <ul>
-                {lista.map((item, index) =>
-                    <li key={index}>
-                        Título: {item.titulo} | Situação: 
+                {lista.map((item, id) =>
+                    <li key={id}>
+                        
+                        Título: 
+                        <span onClick={() => handleToggle(item.titulo)} style={{display: mostrarInput ? "none" : "inline"}}>{item.titulo}</span>
+
+                        <form style={{display: mostrarInput ? "inline" : "none"}} onSubmit={handleUpdate}>
+                            <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)}/>
+                            <input type="submit" style={{display:"none"}} />
+                        </form>
+                         
+                        | Situação: 
                         <span style={{ color: item.status === "Pendente" ? "orange" : "green" }}> {item.status} </span>
                         | Prioridade: 
                         <span style={{color: item.prioridade === "Alta" ? "violet" : item.prioridade === "Baixa" ? "white" : "pink"}}> {item.prioridade}</span>
-                        <button style={{border: "2px solid green"}} onClick={() => handleChange("Concluída", item)}>Concluir</button>
-                        <button style={{border: "2px solid orange"}} onClick={() => handleChange("Pendente", item)}>Reabrir</button>
+
+                        {item.status == "Pendente" ? <button style={{border: "2px solid green"}} onClick={() => handleChange("Concluída", item)}>Concluir</button> :
+                        <button style={{border: "2px solid orange"}} onClick={() => handleChange("Pendente", item)}>Reabrir</button>}
+                        
+                        <button>+ Prioridade</button>
+                        <button>- Prioridade</button>
+                        
+                        
                         <button style={{border: "2px solid red"}} onClick={() => handleDelete(item)}>Fechar</button>
                     </li>
                 )}
