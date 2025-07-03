@@ -12,9 +12,8 @@ export default function ListaDeTarefas(){
 
     const [lista, setLista] = useState([])
 
-    const [mostrarInput, setMostrarinput] = useState(false)
-
-    const [titulo, setTitulo] = useState("")
+    const [itemEditandoId, setItemEditandoId] = useState(null);
+    const [novoTitulo, setNovoTitulo] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -47,15 +46,22 @@ export default function ListaDeTarefas(){
         )
     }
 
-    const handleUpdate = (e, titulo_passado, titulo) => {
+    
+    function handleToggleEditar(item) {
+        setItemEditandoId(item.id);
+        setNovoTitulo(item.titulo);
+    }
+
+    function handleUpdate(e) {
         e.preventDefault();
         setLista(prevLista =>
-            prevLista.map(i =>
-                i.titulo === titulo_passado ? { ...i, titulo: titulo } : i
-            )
-        )
-        setMostrarinput(false)
-    }
+          prevLista.map(item =>
+            item.id === itemEditandoId ? { ...item, titulo: novoTitulo } : item
+          )
+        );
+        setItemEditandoId(null);
+        setNovoTitulo("");
+      }
 
     const ordenarPorTitulo = () => {
         const listaOrdenada = [...lista].sort((a, b) =>
@@ -72,10 +78,7 @@ export default function ListaDeTarefas(){
         setLista(listaOrdenada)
     }
 
-    function handleToggle(titulo){
-        setTitulo(titulo)
-        setMostrarinput(true)
-    }
+    
 
     return(
         <div>
@@ -104,16 +107,22 @@ export default function ListaDeTarefas(){
             </div>
 
             <ul>
-                {lista.map((item, id) =>
-                    <li key={id}>
-                        
-                        Título: 
-                        <span onClick={() => handleToggle(item.titulo)} style={{display: mostrarInput ? "none" : "inline"}}>{item.titulo}</span>
-
-                        <form style={{display: mostrarInput ? "inline" : "none"}} onSubmit={handleUpdate}>
-                            <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)}/>
-                            <input type="submit" style={{display:"none"}} />
-                        </form>
+            {lista.map(item => (
+                <li key={item.id}>
+                Título: {itemEditandoId === item.id ? (
+                    <form onSubmit={handleUpdate} style={{ display: "inline" }}>
+                    <input
+                        type="text"
+                        value={novoTitulo}
+                        onChange={(e) => setNovoTitulo(e.target.value)}
+                    />
+                    <button type="submit" style={{display:"none"}}>Salvar</button>
+                    <button type="button" onClick={() => setItemEditandoId(null)}>Cancelar</button>
+                    </form>) : 
+                    (
+                    <span onClick={() => handleToggleEditar(item)} style={{ cursor: 'pointer' }}>
+                    {item.titulo}
+                    </span>)}
                          
                         | Situação: 
                         <span style={{ color: item.status === "Pendente" ? "orange" : "green" }}> {item.status} </span>
@@ -129,7 +138,7 @@ export default function ListaDeTarefas(){
                         
                         <button style={{border: "2px solid red"}} onClick={() => handleDelete(item)}>Fechar</button>
                     </li>
-                )}
+                ))}
             </ul>
         </div>
     )
