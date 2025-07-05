@@ -8,6 +8,8 @@ export default function ListaDeTarefas(){
         status: "Pendente",
         prioridade: "Alta",
         id :  Math.floor(Math.random()*1000000000)
+        prioridade: "Alta",
+        id :  Math.floor(Math.random()*1000000000)
     })
 
     const [lista, setLista] = useState([])
@@ -23,11 +25,15 @@ export default function ListaDeTarefas(){
             status: "Pendente",
             prioridade: tarefa.prioridade,
             id :  Math.floor(Math.random()*1000000000)
+            prioridade: tarefa.prioridade,
+            id :  Math.floor(Math.random()*1000000000)
         }
         setLista([...lista, novaTarefa])
         setTarefa({
             titulo: "",
             status: "Pendente",
+            prioridade: "Alta",
+            id :  Math.floor(Math.random()*1000000000)
             prioridade: "Alta",
             id :  Math.floor(Math.random()*1000000000)
         })
