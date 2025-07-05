@@ -7,7 +7,7 @@ export default function ListaDeTarefas(){
         titulo: "",
         status: "Pendente",
         prioridade: "Alta",
-        id :  Math.floor(Math.random()*1000000000)
+        id :  Math.floor(Math.random()*1000000000),
         prioridade: "Alta",
         id :  Math.floor(Math.random()*1000000000)
     })
@@ -24,7 +24,7 @@ export default function ListaDeTarefas(){
             titulo: tarefa.titulo,
             status: "Pendente",
             prioridade: tarefa.prioridade,
-            id :  Math.floor(Math.random()*1000000000)
+            id :  Math.floor(Math.random()*1000000000),
             prioridade: tarefa.prioridade,
             id :  Math.floor(Math.random()*1000000000)
         }
@@ -33,7 +33,7 @@ export default function ListaDeTarefas(){
             titulo: "",
             status: "Pendente",
             prioridade: "Alta",
-            id :  Math.floor(Math.random()*1000000000)
+            id :  Math.floor(Math.random()*1000000000),
             prioridade: "Alta",
             id :  Math.floor(Math.random()*1000000000)
         })
