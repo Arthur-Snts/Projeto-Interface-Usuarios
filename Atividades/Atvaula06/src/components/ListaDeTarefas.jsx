@@ -7,8 +7,6 @@ export default function ListaDeTarefas(){
         titulo: "",
         status: "Pendente",
         prioridade: "Alta",
-        id :  Math.floor(Math.random()*1000000000),
-        prioridade: "Alta",
         id :  Math.floor(Math.random()*1000000000)
     })
 
@@ -24,16 +22,12 @@ export default function ListaDeTarefas(){
             titulo: tarefa.titulo,
             status: "Pendente",
             prioridade: tarefa.prioridade,
-            id :  Math.floor(Math.random()*1000000000),
-            prioridade: tarefa.prioridade,
             id :  Math.floor(Math.random()*1000000000)
         }
         setLista([...lista, novaTarefa])
         setTarefa({
             titulo: "",
             status: "Pendente",
-            prioridade: "Alta",
-            id :  Math.floor(Math.random()*1000000000),
             prioridade: "Alta",
             id :  Math.floor(Math.random()*1000000000)
         })
@@ -182,7 +176,7 @@ export default function ListaDeTarefas(){
                             </form>
                         ) : (
                             <>
-                                <span className="titulo" onClick={() => handleToggleEditar(item)} title="Clique para editar">{item.titulo}</span>
+                                <span className="titulo" onClick={() => handleToggleEditar(item)} title="Clique para editar">{item.titulo == "" ? "Tarefa sem Título! Clique para editar" : item.titulo}</span>
                                 <span className="prioridade">
                                     Prioridade: 
                                     <span style={{color: item.prioridade === "Alta" ? "hotpink" : item.prioridade === "Baixa" ? "pink" : "violet"}}> {item.prioridade}</span></span>
