@@ -176,7 +176,7 @@ export default function ListaDeTarefas(){
                             </form>
                         ) : (
                             <>
-                                <span className="titulo" onClick={() => handleToggleEditar(item)} title="Clique para editar">{item.titulo == "" ? "Tarefa sem Título! Clique para editar" : item.titulo}</span>
+                                <span className="titulo" onClick={() => handleToggleEditar(item)} title="Clique para editar">{item.titulo === "" ? "Tarefa sem Título! Clique para editar" : item.titulo}</span>
                                 <span className="prioridade">
                                     Prioridade: 
                                     <span style={{color: item.prioridade === "Alta" ? "hotpink" : item.prioridade === "Baixa" ? "pink" : "violet"}}> {item.prioridade}</span></span>
