@@ -38,7 +38,7 @@ export default function Conexao() {
                     <h3>Dados do Usuário de Id: {id}</h3>
                     <p>{filtrado.name}</p>
                     <p>{filtrado.username}</p>
-                     <p>{filtrado.address?.city}</p> {/*O React não verificar o valor de address antes de renderizar o filtrado */}
+                    <p>{filtrado.address?.city}</p> {/*O React não verificar o valor de address antes de renderizar o filtrado */}
                     
                     
                     <button onClick={() => setCount(count + 1)}>Resgatar Dados</button>
